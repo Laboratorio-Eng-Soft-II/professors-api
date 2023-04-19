@@ -4,6 +4,7 @@ import { Routes } from "./routes"
 import config from 'config';
 import validateEnv from './utils/validate-env';
 import { AppDataSource } from './utils/data-source';
+import cors from 'cors';
 
 AppDataSource.initialize()
   .then(async () => {
@@ -22,6 +23,7 @@ AppDataSource.initialize()
     // 3. Cookie Parser
 
     // 4. Cors
+    app.use(cors())
 
     // ROUTES
     Routes.forEach(route => {
