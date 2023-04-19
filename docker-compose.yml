@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-professors
+    ports:
+      - '6550:5432'
+    volumes:
+      - postgresProfessorsDB:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+
+volumes:
+  postgresProfessorsDB:
