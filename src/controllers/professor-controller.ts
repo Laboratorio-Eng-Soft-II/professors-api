@@ -69,4 +69,19 @@ export class ProfessorController {
         return "Professor has been removed!"
     }
 
+    async approveOrRejectPosition(request: Request, response: Response, next: NextFunction) {
+        const positionsUrl = config.get<string>('positionsUrl');
+        const { approved } = request.body
+        const id = request.params.id
+
+        const axiosResponse = await axios.post(positionsUrl + '/positions/' + id, { approved })
+
+        return {
+            status: axiosResponse.status,
+            id: axiosResponse.data.id,
+            approved,
+        }
+        
+    }
+
 }
